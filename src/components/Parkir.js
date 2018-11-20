@@ -1,24 +1,31 @@
 import React from 'react';
+import swal from 'sweetalert';
+import axios from 'axios';
+
+const url = "http://localhost/parkir-restful-php";
 
 class Parkir extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      data: [
-        {
-          id: 1,
-          tanggal: "2018-07-01 08:00:00",
-          merk: "Honda",
-          type: "Supra X 125"
-        },
-        {
-          id: 2,
-          tanggal: "2018-07-01 08:01:00",
-          merk: "Honda",
-          type: "Vario 150"
-        }
-      ]
+      data: []
     }
+  }
+
+  componentDidMount(){
+    axios.get(url + '/api/realtime')
+    .then((response) => {
+      if(response.data.status === 200){
+        console.log(response.data);
+        this.setState({
+          data: response.data.data
+        });
+      }
+    })
+    .catch((error) => {
+      swal("Oops", "Terjadi kesalahan", "warning");
+      console.log(error);
+    });
   }
 
   render(){
@@ -29,19 +36,21 @@ class Parkir extends React.Component {
         <table className="table table-hover table-striped">
           <thead>
             <tr>
-              <th>ID</th>
+              <th>No.</th>
               <th>Tanggal</th>
               <th>Merk</th>
-              <th>Type</th>
+              <th>Tipe</th>
+              <th>Nama</th>
             </tr>
           </thead>
           <tbody>
-            {this.state.data.map((el, i) => 
-              <tr key={i}>
-                  <td>{el.id}</td>
-                  <td>{el.tanggal}</td>
-                  <td>{el.merk}</td>
-                  <td>{el.type}</td>
+            {this.state.data.map((el, i) =>
+              <tr key={el.id}>
+                <td>{i}</td>
+                <td>{el.waktu.split(" ")[0]}</td>
+                <td>{el.merk}</td>
+                <td>{el.tipe}</td>
+                <td>{el.nama}</td>
               </tr>
             )}
           </tbody>

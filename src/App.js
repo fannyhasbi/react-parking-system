@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Link } from 'react-router-dom';
 import Home from './components/Home';
 import ScanPage from './components/Scan';
 import Parkir from './components/Parkir';
+import MonthlyData from './components/MonthlyData';
 import About from './components/About';
 
 class App extends Component {
@@ -20,7 +21,8 @@ class App extends Component {
           </ul>
           <Route exact path="/" component={Home} />
           <Route path="/scan" component={ScanPage} />
-          <Route path="/data-parkir" component={Parkir} />
+          <Route path="/realtime" component={Parkir} />
+          <Route path="/data-parkir" component={MonthlyData} />
           <Route path="/about" component={About} />
         </div>
       </BrowserRouter>
