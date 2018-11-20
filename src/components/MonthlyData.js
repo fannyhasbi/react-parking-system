@@ -1,4 +1,8 @@
 import React from 'react';
+import swal from 'sweetalert';
+import axios from 'axios';
+
+const url = "http://localhost/parkir-restful-php";
 
 class MonthlyData extends React.Component {
   constructor(props){
@@ -6,6 +10,26 @@ class MonthlyData extends React.Component {
     this.state = {
       data: []
     }
+  }
+
+  componentDidMount(){
+    axios.get(url + '/api/data-parkir', {
+      params: {
+        id_officer: 1
+      }
+    })
+    .then((response) => {
+      if(response.data.status === 200){
+        console.log(response.data);
+        this.setState({
+          data: response.data.data
+        });
+      }
+    })
+    .catch((error) => {
+      swal("Oops", "Terjadi kesalahan", "warning");
+      console.log(error);
+    })
   }
 
   render(){
@@ -21,10 +45,12 @@ class MonthlyData extends React.Component {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>Agustus</td>
-              <td>12</td>
-            </tr>
+            {this.state.data.map((el, i) =>
+              <tr key={i}>
+                <td>{el.waktu}</td>
+                <td>{el.jumlah}</td>
+              </tr>
+            )}
           </tbody>
         </table>
       </div>
