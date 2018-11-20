@@ -1,12 +1,13 @@
 import React from 'react';
 import QrReader from 'react-qr-reader';
+import swal from 'sweetalert';
 
 class ScanPage extends React.Component {
   constructor(props){
     super(props);
 
     this.state = {
-      delay: 300,
+      delay: 1500,
       result: "No Result",
       isOpen: false
     }
@@ -15,11 +16,13 @@ class ScanPage extends React.Component {
 
   handleScan(data){
     if(data){
-      alert("Here is the data : " + data);
+      swal("Success", "Berhasil discan", "success");
+      
       this.setState({
         result: data
       });
     }
+
   }
 
   handleError(err){
