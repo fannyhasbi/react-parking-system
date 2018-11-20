@@ -22,11 +22,6 @@ class ScanPage extends React.Component {
         result: data
       });
     }
-
-  }
-
-  handleError(err){
-    console.log(err);
   }
 
   render(){
@@ -47,7 +42,7 @@ class ScanPage extends React.Component {
           this.state.isOpen && 
           <QrReader
             delay={this.state.delay}
-            onError={this.handleError}
+            onError={(err) => console.log(err)}
             onScan={this.handleScan}
             style={{ width: "100%" }}
           />
