@@ -16,7 +16,6 @@ class Parkir extends React.Component {
     axios.get(url + '/api/realtime')
     .then((response) => {
       if(response.data.status === 200){
-        console.log(response.data);
         this.setState({
           data: response.data.data
         });

@@ -1,6 +1,10 @@
 import React from 'react';
 import QrReader from 'react-qr-reader';
+import qs from 'qs';
 import swal from 'sweetalert';
+import axios from 'axios';
+
+const url = "http://localhost/parkir-restful-php";
 
 class ScanPage extends React.Component {
   constructor(props){
@@ -8,18 +12,47 @@ class ScanPage extends React.Component {
 
     this.state = {
       delay: 1500,
-      result: "No Result",
+      data: "",
       isOpen: false
     }
+    
     this.handleScan = this.handleScan.bind(this);
   }
 
   handleScan(data){
     if(data){
-      swal("Success", "Berhasil discan", "success");
+      const postData = qs.stringify({
+        kode_qr: data,
+        id_officer: 1
+      });
+
+      axios.post(url + '/api/scan',
+        postData,
+        {
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          }
+        }
+      )
+      .then((response) => {
+        console.log(response);
+        if(response.data.status === 200){
+          swal("Berhasil", "Kendaraan berhasil di-scan", "success");
+        }
+        else if(response.data.status === 404){
+          swal("Oops", "Kode QR tidak dikenali", "warning");
+        }
+        else {
+          swal("Oops", "Terjadi kesalahan", "warning");
+        }
+      })
+      .catch((error) => {
+        swal("Oops", "Terjadi kesalahan", "warning");
+        console.log('error', error);
+      });
       
       this.setState({
-        result: data
+        data: data
       });
     }
   }
@@ -38,6 +71,7 @@ class ScanPage extends React.Component {
       <div>
         <h1>Sistem Parkir</h1>
         { btn }
+
         {
           this.state.isOpen && 
           <QrReader
@@ -47,7 +81,7 @@ class ScanPage extends React.Component {
             style={{ width: "100%" }}
           />
         }
-        <p>{this.state.result}</p>
+        <p>{this.state.data}</p>
       </div>
     )
   }
