@@ -4,7 +4,7 @@ import qs from 'qs';
 import swal from 'sweetalert';
 import axios from 'axios';
 
-const url = "http://localhost/parkir-restful-php";
+import PARKIR_APP from '../config/constants';
 
 class ScanPage extends React.Component {
   constructor(props){
@@ -26,7 +26,7 @@ class ScanPage extends React.Component {
         id_officer: 1
       });
 
-      axios.post(url + '/api/scan',
+      axios.post(PARKIR_APP.url + '/api/scan',
         postData,
         {
           headers: {

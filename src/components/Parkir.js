@@ -2,7 +2,7 @@ import React from 'react';
 import swal from 'sweetalert';
 import axios from 'axios';
 
-const url = "http://localhost/parkir-restful-php";
+import PARKIR_APP from '../config/constants';
 
 class Parkir extends React.Component {
   constructor(props){
@@ -13,7 +13,7 @@ class Parkir extends React.Component {
   }
 
   componentDidMount(){
-    axios.get(url + '/api/realtime')
+    axios.get(PARKIR_APP.url + '/api/realtime')
     .then((response) => {
       if(response.data.status === 200){
         this.setState({

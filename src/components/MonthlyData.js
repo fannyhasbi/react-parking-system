@@ -2,7 +2,7 @@ import React from 'react';
 import swal from 'sweetalert';
 import axios from 'axios';
 
-const url = "http://localhost/parkir-restful-php";
+import PARKIR_APP from '../config/constants';
 
 class MonthlyData extends React.Component {
   constructor(props){
@@ -13,7 +13,7 @@ class MonthlyData extends React.Component {
   }
 
   componentDidMount(){
-    axios.get(url + '/api/data-parkir', {
+    axios.get(PARKIR_APP.url + '/api/data-parkir', {
       params: {
         id_officer: 1
       }
