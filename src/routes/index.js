@@ -1,9 +1,15 @@
+import About from '../views/About';
 import Dashboard from '../layouts/Dashboard/Dashboard';
 
 const indexRoutes = [
   {
-    path: "/control",
-    name: "Control",
+    path: '/about',
+    name: 'About Us',
+    component: About
+  },
+  {
+    path: '/control',
+    name: 'Control',
     component: Dashboard
   }
 ];

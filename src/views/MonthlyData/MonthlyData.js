@@ -1,8 +1,8 @@
 import React from 'react';
-import swal from 'sweetalert';
+import Swal from 'sweetalert2';
 import axios from 'axios';
 
-import PARKIR_APP from '../config/constants';
+import PARKIR_APP from '../../config/constants';
 
 class MonthlyData extends React.Component {
   constructor(props){
@@ -26,7 +26,7 @@ class MonthlyData extends React.Component {
       }
     })
     .catch((error) => {
-      swal("Oops", "Terjadi kesalahan", "warning");
+      Swal("Oops", "Terjadi kesalahan", "warning");
       console.log(error);
     })
   }
