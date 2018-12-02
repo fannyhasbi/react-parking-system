@@ -1,5 +1,5 @@
 const PARKIR_APP = {
-  url: 'http://localhost/parkir-restful-php'
+  url: 'https://parkir-qr.000webhostapp.com'
 }
 
 export default PARKIR_APP;

@@ -91,8 +91,12 @@ class Login extends React.Component {
   }
 
   render(){
+    if(sessionStorage.getItem('id_officer'))
+      return <Redirect to="/control/scan" />
+
     if(this.state.is_valid)
       return <Redirect to="/control/scan" />
+
     return (
       <div>
         <Jumbotron className="text-center alert alert-info" fluid>
