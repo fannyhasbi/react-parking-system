@@ -34,7 +34,7 @@ class Scan extends React.Component {
     if(data){
       const postData = qs.stringify({
         kode_qr: data,
-        id_officer: 1
+        id_officer: sessionStorage.getItem("id_officer")
       });
 
       axios.post(PARKIR_APP.url + '/api/scan',

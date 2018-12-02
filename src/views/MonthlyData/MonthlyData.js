@@ -26,7 +26,7 @@ class MonthlyData extends React.Component {
   componentDidMount(){
     axios.get(PARKIR_APP.url + '/api/data-parkir', {
       params: {
-        id_officer: 1
+        id_officer: sessionStorage.getItem("id_officer")
       }
     })
     .then((response) => {
