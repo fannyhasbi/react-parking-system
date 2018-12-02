@@ -45,7 +45,7 @@ class Parkir extends React.Component {
           <tbody>
             {this.state.data.map((el, i) =>
               <tr key={el.id}>
-                <td>{i}</td>
+                <td>{i+1}</td>
                 <td>{el.waktu.split(" ")[0]}</td>
                 <td>{el.merk}</td>
                 <td>{el.tipe}</td>
