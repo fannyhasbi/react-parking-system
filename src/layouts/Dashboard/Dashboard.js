@@ -10,7 +10,23 @@ import dashboardRoutes from '../../routes/dashboard';
 var ps;
 
 class Dashboard extends React.Component {
+  constructor(props){
+    super(props);
+
+    this.state = {
+      hasLoggedIn: false
+    }
+  }
+  
   componentDidMount() {
+    // check whether the user has logged in or not
+    if(sessionStorage.getItem("id_officer")){
+      this.setState({ hasLoggedIn: true });
+    }
+    else {
+      this.setState({ hasLoggedIn: false });
+    }
+
     if (navigator.platform.indexOf("Win") > -1) {
       ps = new PerfectScrollbar(this.refs.mainPanel);
       document.body.classList.toggle("perfect-scrollbar-on");
@@ -32,6 +48,9 @@ class Dashboard extends React.Component {
   }
 
   render(){
+    if(!this.state.hasLoggedIn)
+      return <Redirect to="/login" />
+
     return (
       <div className="wrapper">
         <Sidebar {...this.props} routes={dashboardRoutes} />
