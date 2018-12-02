@@ -83,8 +83,11 @@ class Login extends React.Component {
 
   saveSession(officer_data){
     sessionStorage.setItem("id_officer", officer_data.id);
-    sessionStorage.setItem("username", officer_data.username);
     sessionStorage.setItem("name", officer_data.nama);
+    sessionStorage.setItem("username", officer_data.username);
+    sessionStorage.setItem("parkiran", officer_data.parkiran);
+    sessionStorage.setItem("jurusan", officer_data.jurusan);
+    sessionStorage.setItem("fakultas", officer_data.fakultas);
   }
 
   render(){
