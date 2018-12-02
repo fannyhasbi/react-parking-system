@@ -8,7 +8,7 @@ const Home = () => (
       <Container fluid>
         <h1>Parkir QR Scan</h1>
         <p>Aplikasi ini berguna untuk memudahkan pendataan kendaraan di tempat parkir di kawasan Universitas Diponegoro.</p>
-        <Link to="/control/realtime">
+        <Link to="/control/scan">
           <Button color="primary">Masuk</Button>
         </Link>
       </Container>
