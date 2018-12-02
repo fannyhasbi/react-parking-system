@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import { Nav } from "reactstrap";
 // javascript plugin used to create scrollbars on windows
 import PerfectScrollbar from "perfect-scrollbar";
+import { Link } from 'react-router-dom';
 
 import logo from "../../logo-white.svg";
 
@@ -34,20 +35,14 @@ class Sidebar extends React.Component {
     return (
       <div className="sidebar" data-color="blue">
         <div className="logo">
-          <a
-            href="https://www.creative-tim.com"
-            className="simple-text logo-mini"
-          >
+          <Link to="/" className="simple-text logo-mini">
             <div className="logo-img">
               <img src={logo} alt="react-logo" />
             </div>
-          </a>
-          <a
-            href="https://www.creative-tim.com"
-            className="simple-text logo-normal"
-          >
-            Creative Tim
-          </a>
+          </Link>
+          <Link to="/" className="simple-text logo-normal">
+            Parkir QR Scan
+          </Link>
         </div>
         <div className="sidebar-wrapper" ref="sidebar">
           <Nav>
