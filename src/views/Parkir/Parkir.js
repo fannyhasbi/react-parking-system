@@ -20,7 +20,6 @@ class Parkir extends React.Component {
           data: response.data.data
         });
       }
-      Swal("Yoyoy", "Mantulll", "success");
     })
     .catch((error) => {
       Swal("Oops", "Terjadi kesalahan", "warning");
