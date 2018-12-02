@@ -4,6 +4,17 @@ import qs from 'qs';
 import Swal from 'sweetalert2';
 import axios from 'axios';
 
+import {
+  Card,
+  CardBody,
+  CardHeader,
+  CardTitle,
+  Row,
+  Col,
+  Button
+} from 'reactstrap';
+import { PanelHeader } from '../../components';
+
 import PARKIR_APP from '../../config/constants';
 
 class Scan extends React.Component {
@@ -58,30 +69,43 @@ class Scan extends React.Component {
   }
 
   render(){
-    var btn = <div></div>;
+    let btn = <div></div>;
 
     if(this.state.isOpen){
-      btn = <button className="btn btn-info" onClick={() => this.setState({ isOpen: false })}>Tutup Scan</button>
+      btn = <Button color="info" onClick={() => this.setState({ isOpen: false })}>Tutup Scan</Button>
     }
     else {
-      btn = <button className="btn btn-success" onClick={() => this.setState({ isOpen: true })}>Mulai Scan</button>
+      btn = <Button color="success" onClick={() => this.setState({ isOpen: true })}>Mulai Scan</Button>
     }
 
     return (
       <div>
-        <h1>Sistem Parkir</h1>
-        { btn }
+        <PanelHeader size="sm" />
+        <div className="contnet">
+          <Row>
+            <Col xs={12}>
+              <Card>
+                <CardHeader>
+                  <CardTitle tag="h4">Scan Kendaraan</CardTitle>
+                </CardHeader>
+                <CardBody>
+                  { btn }
 
-        {
-          this.state.isOpen && 
-          <QrReader
-            delay={this.state.delay}
-            onError={(err) => console.log(err)}
-            onScan={this.handleScan}
-            style={{ width: "100%" }}
-          />
-        }
-        <p>{this.state.data}</p>
+                  {
+                    this.state.isOpen && 
+                    <QrReader
+                      delay={this.state.delay}
+                      onError={(err) => console.log(err)}
+                      onScan={this.handleScan}
+                      style={{ width: "100%" }}
+                    />
+                  }
+                  <p>{this.state.data}</p>
+                </CardBody>
+              </Card>
+            </Col>
+          </Row>
+        </div>
       </div>
     )
   }
