@@ -60,6 +60,7 @@ class Login extends React.Component {
     )
     .then((response) => {
       if(response.data.status === 200){
+        this.saveSession(response.data.data);
         this.setState({ is_valid: true });
       }
       else {
@@ -67,7 +68,6 @@ class Login extends React.Component {
         Swal({
           text: 'Username atau password tidak terdaftar',
           type: 'error',
-          toast: true
         });
       }
     })
@@ -79,6 +79,12 @@ class Login extends React.Component {
       });
       console.log('error', error);
     });
+  }
+
+  saveSession(officer_data){
+    sessionStorage.setItem("id_officer", officer_data.id);
+    sessionStorage.setItem("username", officer_data.username);
+    sessionStorage.setItem("name", officer_data.nama);
   }
 
   render(){

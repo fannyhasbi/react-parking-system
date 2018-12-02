@@ -89,7 +89,7 @@ class Scan extends React.Component {
                   <CardTitle tag="h4">Scan Kendaraan</CardTitle>
                 </CardHeader>
                 <CardBody>
-                  <p>{'Data : ' + this.state.data}</p>
+                  <p>{'Data : ' + sessionStorage.getItem("username")}</p>
                   
                   { btn }
                   
