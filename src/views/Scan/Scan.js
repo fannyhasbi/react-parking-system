@@ -81,7 +81,7 @@ class Scan extends React.Component {
     return (
       <div>
         <PanelHeader size="sm" />
-        <div className="contnet">
+        <div className="content">
           <Row>
             <Col xs={12}>
               <Card>
@@ -89,8 +89,10 @@ class Scan extends React.Component {
                   <CardTitle tag="h4">Scan Kendaraan</CardTitle>
                 </CardHeader>
                 <CardBody>
+                  <p>{'Data : ' + this.state.data}</p>
+                  
                   { btn }
-
+                  
                   {
                     this.state.isOpen && 
                     <QrReader
@@ -100,7 +102,6 @@ class Scan extends React.Component {
                       style={{ width: "100%" }}
                     />
                   }
-                  <p>{this.state.data}</p>
                 </CardBody>
               </Card>
             </Col>
